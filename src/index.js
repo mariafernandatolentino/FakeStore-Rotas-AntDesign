@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import './index.css';
+import { PaginaInicial } from './paginas/PaginaInicial';
+import { PaginaProduto } from './paginas/PaginaProduto';
+import { NavBar } from './NavBar';
+import { PaginaCategorias } from './paginas/PaginaCategorias';
+
+const roteador = createBrowserRouter([
+  {path: '/', element: <PaginaInicial/>},
+  {path: '/produto/:id', element: <PaginaProduto/>},
+  {path: '/categorias/:category', element: <PaginaCategorias/>},
+  
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <NavBar></NavBar>
+    <RouterProvider router= {roteador}/>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
